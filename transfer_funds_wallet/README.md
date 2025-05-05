@@ -30,3 +30,9 @@ Build the Move package:
 ```bash
 sui move build
 ```
+## Deployment
+
+Deploy to the Sui network:
+
+```bash
+sui client publish --gas-budget 10000000
