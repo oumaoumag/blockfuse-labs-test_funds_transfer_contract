@@ -28,3 +28,23 @@ module transfer_funds_wallet::wallet;
         balance::join(&mut wallet.balance, coin_balance);
     }
     
+    // Transfer SUI from wallet to another address
+    public entry fun transfer_to(wallet: &mut Wallet, amount: u64, recipient: address, ctx: &mut TxContext) {
+        // Check if the sender is the owner
+        let sender = tx_context::sender(ctx);
+        assert!(sender == wallet.owner,0);
+    
+        // Check if wallet has enough balance
+        assert!(balance::value(&wallet.balance) >= amount, 1);
+
+        // Create a coin with the specified amount
+        let transfer_coin = coin::take(&mut wallet.balance, amount, ctx);
+
+        // Transfer the coin to the recipinet
+        transfer::public_transfer(transfer_coin, recipient);
+    }
+    
+    // Check the balance after transfer
+    public fun get_balance(wallet: &Wallet): u64 {
+        balance::value(&wallet.balance)
+     }
