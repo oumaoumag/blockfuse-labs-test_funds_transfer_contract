@@ -8,3 +8,18 @@ module transfer_funds_wallet::wallet;
         balance: Balance<SUI>,
         owner: address
     }
+
+    // Create a new empty wallet
+    public entry fun create_wallet(ctx: &mut TxContext) {
+        let sender = tx_context::sender(ctx);
+        let wallet = Wallet {
+            id: object ::new(ctx),
+            balance: balance:: zero<SUI>(),
+            owner: sender
+        };
+
+        // Transfer waller to the creater
+        transfer::transfer(wallet, sender);
+    }
+
+    
