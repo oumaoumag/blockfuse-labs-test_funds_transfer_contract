@@ -8,3 +8,25 @@ A simple SUI Blockchain wallet tat allows users to create wallets, deposit SUI c
 - Transfer SUI coins to other addresses
 - CHeck wallet balance
 
+
+## Prerequisites
+
+- [Sui CLI](https://docs.sui.io/build/install)
+- [Move language](https://docs.sui.io/build/move)
+
+## Installation
+
+1. Clone this repository
+2. Navigate to the project directory
+
+```bash
+cd transfer_funds_wallet
+```
+
+## Building the Project
+
+Build the Move package:
+
+```bash
+sui move build
+```
