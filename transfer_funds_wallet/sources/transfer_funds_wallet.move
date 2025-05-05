@@ -22,4 +22,9 @@ module transfer_funds_wallet::wallet;
         transfer::transfer(wallet, sender);
     }
 
+    // Deposit SUI coins
+    public entry fun deposit(wallet: &mut Wallet, coin:Coin<SUI>, _ctx: &mut TxContext) {
+        let coin_balance = coin::into_balance(coin);
+        balance::join(&mut wallet.balance, coin_balance);
+    }
     
